@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.common.base.mapper.MemberMapper">
+	
+	<select id="login" resultType="com.common.vo.memberVO">
+		select 
+				*
+		from
+				user
+		where
+				id = #{userid}
+	</select>
+	
+	<select id="loginTest" resultType="com.common.vo.memberVO">
+		select 
+				*
+		from
+				user
+		where
+				id = #{userid}
+	</select>
+	
+	<insert id="createObject" parameterType="com.common.vo.ObjectVO">
+		insert into 
+					object (id,name,description)
+			values 
+					(#{id},#{name},#{description})
+	</insert>
+	
+</mapper>
