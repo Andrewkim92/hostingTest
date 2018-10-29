@@ -37,6 +37,7 @@ button:hover {
 	padding: 10px 18px;
 	background-color: #f44336;
 }
+
 .signInbtn {
 	width: auto;
 	padding: 10px 18px;
@@ -136,49 +137,85 @@ to {
 	}
 }
 </style>
-<script> 
-  
-var modal = document.getElementById('id01'); 
-window.onclick = function(event) { 
-    if (event.target == modal) { 
-        modal.style.display = "none"; 
-    } 
-} 
-</script> 
+<script>
+	var modal = document.getElementById('id01');
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+</script>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
-		<a class="navbar-brand" href="/">여행 Advisor</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarResponsive" aria-controls="navbarResponsive"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Services</a>
-					<a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-              </a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-				<li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('id01').style.display='block'"
-			style="width: auto;">Login
-				</a></li>
-			</ul>
-		</div>
+<nav
+	class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class="container">
+	<a class="navbar-brand" href="/">Start Bootstrap</a>
+	<button class="navbar-toggler navbar-toggler-right" type="button"
+		data-toggle="collapse" data-target="#navbarResponsive"
+		aria-controls="navbarResponsive" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="../about.html">About</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="../services.html">Services</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a>
+			</li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownPortfolio" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Portfolio </a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="navbarDropdownPortfolio">
+					<a class="dropdown-item" href="portfolio-1-col.html">1 Column
+						Portfolio</a> <a class="dropdown-item" href="portfolio-2-col.html">2
+						Column Portfolio</a> <a class="dropdown-item"
+						href="portfolio-3-col.html">3 Column Portfolio</a> <a
+						class="dropdown-item" href="portfolio-4-col.html">4 Column
+						Portfolio</a> <a class="dropdown-item" href="portfolio-item.html">Single
+						Portfolio Item</a>
+				</div></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Blog </a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="navbarDropdownBlog">
+					<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a> <a
+						class="dropdown-item" href="blog-home-2.html">Blog Home 2</a> <a
+						class="dropdown-item" href="blog-post.html">Blog Post</a>
+				</div></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Other Pages </a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="navbarDropdownBlog">
+					<a class="dropdown-item" href="full-width.html">Full Width Page</a>
+					<a class="dropdown-item" href="sidebar.html">Sidebar Page</a> <a
+						class="dropdown-item" href="faq.html">FAQ</a> <a
+						class="dropdown-item" href="404.html">404</a> <a
+						class="dropdown-item" href="pricing.html"
+						onclick="document.getElementById('id01').style.display='block'">Pricing
+						Table</a>
+				</div></li>
+				
+				<li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('id01').style.display='block'">Login</a>
+			</li>
+		</ul>
 	</div>
-	</nav>
+</div>
+</nav>
 
 <div id="id01" class="modal">
 	<form class="modal-content animate" action="/loginPost" method="post">
 		<div class="imgcontainer">
 			<span onclick="document.getElementById('id01').style.display='none'"
-				class="close" title="Close Modal">×</span> 
-				<img src="/img_avatar2.png" alt="Avatar" class="avatar">
+				class="close" title="Close Modal">×</span> <img
+				src="/img_avatar2.png" alt="Avatar" class="avatar">
 		</div>
 
 		<div class="container">
@@ -207,7 +244,8 @@ window.onclick = function(event) {
 <div id="signIn" class="modal">
 	<form class="modal-content animate" action="/signUp" method="post">
 		<div class="imgcontainer">
-			<span onclick="document.getElementById('signIn').style.display='none'"
+			<span
+				onclick="document.getElementById('signIn').style.display='none'"
 				class="close" title="Close Modal">×</span> <img
 				src="img_avatar2.png" alt="Avatar" class="avatar">
 		</div>
@@ -216,15 +254,12 @@ window.onclick = function(event) {
 			<label><b>Username</b></label> <input type="text"
 				placeholder="Enter Username" name="uname" required> <label><b>Password</b></label>
 			<input type="password" placeholder="Enter Password" name="psw"
-				required>
-			<label><b>Password again</b></label>
-			<input type="password" placeholder="Enter Password again" name="psw2"
-				required>
-			<label><b>gender</b></label>	
-			<input type="radio" name="gender" value="male" checked>남자
-    		<input type="radio" name="gender" value="female">여자
-    		<br><label><b>birthday</b></label>
-    		<input type="date" name="Bd">
+				required> <label><b>Password again</b></label> <input
+				type="password" placeholder="Enter Password again" name="psw2"
+				required> <label><b>gender</b></label> <input type="radio"
+				name="gender" value="male" checked>남자 <input type="radio"
+				name="gender" value="female">여자 <br> <label><b>birthday</b></label>
+			<input type="date" name="Bd">
 			<button type="submit">Sign up</button>
 		</div>
 

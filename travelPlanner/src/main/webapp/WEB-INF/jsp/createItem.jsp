@@ -20,7 +20,7 @@
 
 
 <!-- Custom styles for this template -->
-<link href="../../resources/css/shop-homepage.css" rel="stylesheet">
+<!-- <link href="../../resources/css/shop-homepage.css" rel="stylesheet"> -->
 
 <script src="../../resources/vendor/jquery/jquery.min.js"></script>
 <script src="../../resources/js/common.js"></script>
@@ -38,22 +38,24 @@ iframe {
 </head>
 <script>
 	fileDrop();
+	
+	getReplyList();
 </script>
 
 <body>
 
 	<jsp:include page="/WEB-INF/jsp/decorators/header.jsp" />
 
-	<div class="row">
+	<div class="container">
 		<jsp:include page="/WEB-INF/jsp/decorators/headerMenu.jsp" />
 
 		<!-- /.col-lg-3 -->
 		<table class="table table-bordered">
 			<thead>
-				<%-- 			<caption>글쓰기</caption> --%>
+<%-- 							<caption>글쓰기</caption> --%>
 			</thead>
 			<tbody>
-				<div id="formDiv" style="width:700px">
+				<div id="formDiv" style="width: 700px">
 					<form action="/createItem" id="fileUpload" name="fileUpload"
 						method="post" enctype="multipart/form-data">
 						주제 : <input type="text" name="subject" id="subject"
@@ -68,11 +70,40 @@ iframe {
 			</tbody>
 		</table>
 
-		<div id="art">
-			<button id="a">삭제</button>
+		<div id="deleteButton">
+			<button id="a" onclick="deleteItem('fileUpload');">삭제</button>
 		</div>
-		<!-- /.row -->
+
+		<br>
+		<div id="replyArea">
+			<table class="table table-bordered">
+				<c:forEach var="item" items="${ReplyList}">
+					<td>${item.reply}</td>
+					<td>${item.replyWriter}</td>
+					<p>
+					</p>
+<%-- 					<a href="/detailItem?bno=${item.bno }">${item.subject }</a> --%>
+				</c:forEach>
+			</table>
+			<table class="table table-bordered">
+				<tbody>
+					<form action="/createReply" id="replyForm" name="replyForm"
+						method="post" enctype="multipart/form-data">
+						<input type="text" name="reply" id="reply" value="reply">
+						<input type="text" name="replyWriter" id="replyWriter"
+							value="replyWriter" readOnly> <input type="hidden"
+							id="bno2" name="bno" value="${vo.bno }">
+						<button type="submit" class="btn btn-primary">Write</button>
+						<button type="button" class="btn btn-primary" onclick="createReplyAjax();">WriteAjax</button>
+					</form>
+				</tbody>
+			</table>
+		</div>
 	</div>
+	
+	<ul id="replies">
+		
+	</ul>
 
 	<jsp:include page="/WEB-INF/jsp/decorators/footer.jsp" />
 

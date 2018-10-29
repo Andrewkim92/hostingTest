@@ -42,11 +42,38 @@ public class mainController {
 	
 	@RequestMapping(value = "/detailItem", method = RequestMethod.GET)
 	public String detailItem(Model model,int bno) throws Exception {
-		
 		model.addAttribute("vo", mapper.getBoardDetail(bno));
 		
+		model.addAttribute("ReplyList", mapper.getReplyList(bno));
+		
 		return "createItem";
-
+	}
+	
+	@RequestMapping(value = "/deleteItem", method = RequestMethod.POST)
+	public String deleteItem(boardVO vo) throws Exception {
+//		System.out.println("deleteItem start");
+		
+		if(vo.getBno().equals(null) || vo.getBno().equals("")) {
+			//error
+//			mapper.createItem(vo);
+		}else {
+			mapper.deleteItem(vo);
+		}
+				
+		return "redirect:";
+	}
+	
+	@RequestMapping(value = "/createReply", method = RequestMethod.POST)
+	public String createReply(boardVO vo) throws Exception {
+		
+//		if(vo.getBno().equals(null) || vo.getBno().equals("")) {
+			//error
+			mapper.createReply(vo);
+//		}else {
+//			mapper.updateReply(vo);
+//		}
+				
+		return "redirect:";
 	}
 
 	@RequestMapping(value = "/createItem", method = RequestMethod.POST)

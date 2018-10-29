@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Shop Homepage</title>
+<title>TravelPlanner</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -19,7 +19,6 @@
 
 <!-- Custom styles for this template -->
 <link href="../../resources/css/shop-homepage.css" rel="stylesheet">
-
 
 </head>
 <body>
@@ -31,7 +30,6 @@
 
 		<div class="row">
 			<jsp:include page="/WEB-INF/jsp/decorators/headerMenu.jsp" />
-			<!-- /.col-lg-3 -->
 
 			<div class="col-lg-9">
 
@@ -100,7 +98,6 @@
 
 	<jsp:include page="/WEB-INF/jsp/decorators/footer.jsp" />
 
-	<!-- Bootstrap core JavaScript -->
 	<script src="../../resources/vendor/jquery/jquery.min.js"></script>
 	<script
 		src="../../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

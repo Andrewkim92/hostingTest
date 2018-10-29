@@ -2,6 +2,7 @@ package com.common.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -39,5 +40,15 @@ public interface MemberMapper {
 	@Update("update board set subject='${subject}',content='${content}',writer='${writer}'"
 			+ "where bno=${bno}")
 	public void updateItem(boardVO vo);
+
+	@Delete("delete from board where bno=${bno}")
+	public void deleteItem(boardVO vo);
+
+	@Insert("insert into reply (bno,reply,replyWriter)"
+			+ "value (#{bno},#{reply},#{replyWriter})")
+	public void createReply(boardVO vo);
+
+	@Select("select * from reply where bno=#{bno}")
+	public List<boardVO> getReplyList(int bno);
 	
 }

@@ -34,6 +34,53 @@ function fileDrop() {
 			});
 }
 
+
+function getReplyList(){
+	var bno=2;
+	$.getJSON("/replies/all/"+bno, function(data){
+		var str="";
+		
+		$(data).each(
+				function(){
+					str +="<li data-rno='"+this.rno+"' class='replyLi'>"
+						+ this.rno + ":" + this.reply
+						+ "</li>";
+				});
+		
+		$("#replies").html(str);
+	});
+}
+
+function createReplyAjax(){
+	
+	let reply = $("#reply").val();
+	let replyWriter = $("#replyWriter").val();
+	let bno = $("#bno").val();
+	
+	$.ajax({
+		url : "/replies",
+		type : "post",
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType: 'text',
+		data : JSON.stringify({
+			bno: bno,
+			replyWriter :replyWriter,
+			reply : reply
+		}),
+		// dataType: 'json',
+		success : function(res) {
+			if (res == 'SUCCESS') {
+				alert("registered");
+			} else {
+				alert("error");
+			}
+		}
+	});
+}
+
 // jpg,gif,png,jpeg 확장자 찾는 함수
 function checkImageType(data) {
 
@@ -70,6 +117,21 @@ function getDFlightInfo(formId) {
 function getFlightTimeInfo(formId) {
 	var formDataObj = $("#" + formId).serialize();
 	location.href = "flightInfo?" + formDataObj;
+}
+
+function deleteItem(formId) {
+
+	var form = document.createElement('form');
+	form.setAttribute("method", "Post"); // Get 또는 Post 입력
+	form.setAttribute("action", "deleteItem");
+	var hiddenField = document.createElement("input");
+	hiddenField.setAttribute("type", "hidden");
+	hiddenField.setAttribute("name", "bno");
+	var bno = $("#bno").val();
+	hiddenField.setAttribute("value", bno);
+	form.appendChild(hiddenField);
+	document.body.appendChild(form);
+	form.submit();
 }
 
 function getFlightTimeInfo2(formId) {
