@@ -61,10 +61,10 @@ function createReplyAjax(){
 		url : "/replies",
 		type : "post",
 		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
+			"Content-Type" : "application/json"
+//			"X-HTTP-Method-Override" : "POST"
 		},
-		dataType: 'text',
+		dataType: "text",
 		data : JSON.stringify({
 			bno: bno,
 			replyWriter :replyWriter,
@@ -74,6 +74,34 @@ function createReplyAjax(){
 		success : function(res) {
 			if (res == 'SUCCESS') {
 				alert("registered");
+				getReplyList();
+			} else {
+				alert("error");
+			}
+		}
+	});
+}
+
+function getReplyList(){
+	
+	$.ajax({
+		url : "/replies",
+		type : "post",
+		headers : {
+			"Content-Type" : "application/json"
+//			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType: "text",
+		data : JSON.stringify({
+			bno: bno,
+			replyWriter :replyWriter,
+			reply : reply
+		}),
+		// dataType: 'json',
+		success : function(res) {
+			if (res == 'SUCCESS') {
+				alert("registered");
+				getReplyList();
 			} else {
 				alert("error");
 			}

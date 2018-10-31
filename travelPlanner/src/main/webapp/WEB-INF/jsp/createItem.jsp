@@ -51,25 +51,22 @@ iframe {
 
 		<!-- /.col-lg-3 -->
 		<table class="table table-bordered">
-			<thead>
-<%-- 							<caption>글쓰기</caption> --%>
-			</thead>
 			<tbody>
 				<div id="formDiv" style="width: 700px">
 					<form action="/createItem" id="fileUpload" name="fileUpload"
 						method="post" enctype="multipart/form-data">
-						주제 : <input type="text" name="subject" id="subject"
-							value="${vo.subject }"> 내용 : <input type="text"
-							name="content" id="content" value="${vo.content }"> 글쓴이 :
-						<input type="text" name="writer" id="writer" value="${vo.writer }">
-						<input type="file" name="file"> <input type="hidden"
-							id="bno" name="bno" value="${vo.bno }">
+						주제 : <input type="text" name="subject" id="subject" value="${vo.subject }"> 
+						내용 : <input type="text" name="content" id="content" value="${vo.content }"> 
+						글쓴이 : <input type="text" name="writer" id="writer" value="${vo.writer }">
+						<input type="file" name="file"> 
+						<input type="hidden" id="bno" name="bno" value="${vo.bno }">
 						<button type="submit" class="btn btn-primary">upload</button>
 					</form>
 				</div>
 			</tbody>
 		</table>
 
+	
 		<div id="deleteButton">
 			<button id="a" onclick="deleteItem('fileUpload');">삭제</button>
 		</div>
@@ -82,7 +79,6 @@ iframe {
 					<td>${item.replyWriter}</td>
 					<p>
 					</p>
-<%-- 					<a href="/detailItem?bno=${item.bno }">${item.subject }</a> --%>
 				</c:forEach>
 			</table>
 			<table class="table table-bordered">
@@ -94,10 +90,11 @@ iframe {
 							value="replyWriter" readOnly> <input type="hidden"
 							id="bno2" name="bno" value="${vo.bno }">
 						<button type="submit" class="btn btn-primary">Write</button>
-						<button type="button" class="btn btn-primary" onclick="createReplyAjax();">WriteAjax</button>
 					</form>
 				</tbody>
 			</table>
+			
+			<button type="button" class="btn btn-primary" onclick="createReplyAjax();">WriteAjax</button>
 		</div>
 	</div>
 	
