@@ -20,7 +20,7 @@ public interface replyMapper {
 	@Select("select * from reply where bno=#{bno}")
 	public List<boardVO> getReplyList(int bno);
 
-	@Update("update reply set reply=#{reply} where bno=#{bno}")
+	@Update("update reply set reply=#{reply} where rno=#{rno}")
 	public void updateReply(boardVO vo);
 
 	@Delete("delete from reply where rno=#{rno}")

@@ -27,8 +27,10 @@ public class mainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String jspFile(Model model) throws Exception {
-		System.out.println("index.jsp request");
+//		System.out.println("index.jsp request");
 		model.addAttribute("itemList", mapper.getAllItemList());
+
+		int[] intArray= {0,0,0,0,0};
 		
 		return "index";
 	}
@@ -39,54 +41,55 @@ public class mainController {
 		return "createItem";
 
 	}
-	
+
 	@RequestMapping(value = "/detailItem", method = RequestMethod.GET)
-	public String detailItem(Model model,int bno) throws Exception {
+	public String detailItem(Model model, int bno) throws Exception {
 		model.addAttribute("vo", mapper.getBoardDetail(bno));
-		
-		model.addAttribute("ReplyList", mapper.getReplyList(bno));
-		
+
+		model.addAttribute("replyList", mapper.getReplyList(bno));
+
 		return "createItem";
 	}
-	
+
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.POST)
 	public String deleteItem(boardVO vo) throws Exception {
-//		System.out.println("deleteItem start");
-		
-		if(vo.getBno().equals(null) || vo.getBno().equals("")) {
-			//error
-//			mapper.createItem(vo);
-		}else {
+		// System.out.println("deleteItem start");
+
+		if (vo.getBno().equals(null) || vo.getBno().equals("")) {
+			// error
+			// mapper.createItem(vo);
+		} else {
 			mapper.deleteItem(vo);
 		}
-				
-		return "redirect:";
-	}
-	
-	@RequestMapping(value = "/createReply", method = RequestMethod.POST)
-	public String createReply(boardVO vo) throws Exception {
-		
-//		if(vo.getBno().equals(null) || vo.getBno().equals("")) {
-			//error
-			mapper.createReply(vo);
-//		}else {
-//			mapper.updateReply(vo);
-//		}
-				
+
 		return "redirect:";
 	}
 
+	/*@RequestMapping(value = "/createReply", method = RequestMethod.POST)
+	public String createReply(boardVO vo) throws Exception {
+
+		// if(vo.getBno().equals(null) || vo.getBno().equals("")) {
+		// error
+		mapper.createReply(vo);
+		// }else {
+		// mapper.updateReply(vo);
+		// }
+
+		return "redirect:";
+	}*/
+
 	@RequestMapping(value = "/createItem", method = RequestMethod.POST)
-	public String createItem(boardVO vo,@RequestPart MultipartFile file,HttpServletRequest req, HttpServletResponse rep) throws Exception {
-        
-		utilFile.fileUpload2(req,rep);
-		
-		if(vo.getBno().equals(null) || vo.getBno().equals("")) {
+	public String createItem(boardVO vo, @RequestPart MultipartFile file, HttpServletRequest req,
+			HttpServletResponse rep) throws Exception {
+
+		utilFile.fileUpload2(req, rep);
+
+		if (vo.getBno().equals(null) || vo.getBno().equals("")) {
 			mapper.createItem(vo);
-		}else {
+		} else {
 			mapper.updateItem(vo);
 		}
-				
+
 		return "redirect:";
 	}
 

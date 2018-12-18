@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+
 <%-- <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
@@ -18,12 +21,25 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="../../resources/css/shop-homepage.css" rel="stylesheet">
+<!-- <link href="../../resources/css/shop-homepage.css" rel="stylesheet"> -->
+<style>
+/* city Search Loading by Justin 2013.04.02 */
+.ui-autocomplete-loading {
+	background: white
+		url('http://f.goodkiss.co.kr/sample/images/waiting.gif') right center
+		no-repeat;
+}
+</style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="../../resources/js/search.js"></script>
 
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/decorators/header.jsp" />
-
 
 	<!-- Page Content -->
 	<div class="container">
@@ -65,6 +81,10 @@
 						class="sr-only">Next</span>
 					</a>
 				</div>
+				<div class="search_area">
+					<p>자동완성기능</p>
+					<input id="autocomplete" type="text" />
+				</div>
 
 				<div class="row">
 					<c:forEach var="item" items="${itemList}">
@@ -98,7 +118,7 @@
 
 	<jsp:include page="/WEB-INF/jsp/decorators/footer.jsp" />
 
-	<script src="../../resources/vendor/jquery/jquery.min.js"></script>
+	<!-- 	<script src="../../resources/vendor/jquery/jquery.min.js"></script> -->
 	<script
 		src="../../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

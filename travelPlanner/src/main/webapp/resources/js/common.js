@@ -1,7 +1,3 @@
-//google.charts.load('current', {
-//	packages : [ 'corechart', 'bar' ]
-//});
-//google.charts.setOnLoadCallback(drawColColors);
 
 function fileDrop() {
 
@@ -26,7 +22,6 @@ function fileDrop() {
 						} else {
 							str = "<div>" + data + "</div>";
 						}
-
 						$(".uploadedList").append(str);
 					}
 				});
@@ -34,20 +29,96 @@ function fileDrop() {
 			});
 }
 
-
-function getReplyList(){
-	var bno=2;
+function getReplyList(bno){
+	
 	$.getJSON("/replies/all/"+bno, function(data){
 		var str="";
 		
 		$(data).each(
 				function(){
-					str +="<li data-rno='"+this.rno+"' class='replyLi'>"
-						+ this.rno + ":" + this.reply
-						+ "</li>";
+					str +="<li class='list-group-item note-item clearfix' id='note-1'>" 
+						+ "<div class='content-body panel-body pull-left' style='width:1500px'>" 
+						+ "<div class='avatar-info'><a class='nickname' href='#' title='"+this.replyWriter+"'>"
+						+ this.replyWriter + "</a></div>" 
+						+ "<div class='date-created'><span class='timeago' title='"+this.timestamp+"'>"+this.timestamp
+						+ "</span>" 
+						+ "</div>"
+						+ "<fieldset class='form'><article id='note-text-1' class='list-group-item-text note-text'>" 
+						+ "<p id='replyArea-"+this.rno+"' text='"+this.reply+"'>"+this.reply+"</p><p><br></p></article></fieldset></div></div>"
+						+ "<div class='content-function pull-right text-center'>"
+						+ "<button id='delete-'"+this.rno+" onclick='deleteReply("+this.rno+")'>delete</button>"
+						+ "<button id='update-'"+this.rno+" onclick='updateReply("+this.rno+")'>update</button>";
 				});
 		
-		$("#replies").html(str);
+		$("#replyTemplateArea").html(str);
+		
+	});
+}
+
+function updateReply(rno){
+	
+//	ulObj.removeChild(liObjs[1]);
+	var exReply = $("#replyArea-"+rno).text();
+	
+	var str="<input type='text' id='updateReply' value='"+exReply+"'></input>";
+	var str2= "<button id='update' onclick='updateReplyDO("+rno+")'>update</button>";
+	
+	str= str+str2;
+	$("#replyArea-"+rno).empty();
+	$("#replyArea-"+rno).html(str);
+}
+
+function updateReplyDO(rno){
+	
+	let bno = parseInt($("#bno").val());
+	let reply = $("#updateReply").val();
+	
+	$.ajax({
+		url : "/replies/"+rno,
+		type : "PUT",
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		dataType: "text",
+		data : JSON.stringify({
+			rno: rno,
+			reply:reply
+		}),
+		// dataType: 'json',
+		success : function(res) {
+			if (res == 'SUCCESS') {
+				alert("updated");
+				getReplyList(bno);
+			} else {
+				alert("error");
+			}
+		}
+	});
+}
+
+function deleteReply(rno){
+	
+	let bno = $("#bno").val();
+	
+	$.ajax({
+		url : "/replies/"+rno,
+		type : "delete",
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		dataType: "text",
+		data : JSON.stringify({
+			rno: rno
+		}),
+		// dataType: 'json',
+		success : function(res) {
+			if (res == 'SUCCESS') {
+				alert("deleted");
+				getReplyList(bno);
+			} else {
+				alert("error");
+			}
+		}
 	});
 }
 
@@ -74,34 +145,7 @@ function createReplyAjax(){
 		success : function(res) {
 			if (res == 'SUCCESS') {
 				alert("registered");
-				getReplyList();
-			} else {
-				alert("error");
-			}
-		}
-	});
-}
-
-function getReplyList(){
-	
-	$.ajax({
-		url : "/replies",
-		type : "post",
-		headers : {
-			"Content-Type" : "application/json"
-//			"X-HTTP-Method-Override" : "POST"
-		},
-		dataType: "text",
-		data : JSON.stringify({
-			bno: bno,
-			replyWriter :replyWriter,
-			reply : reply
-		}),
-		// dataType: 'json',
-		success : function(res) {
-			if (res == 'SUCCESS') {
-				alert("registered");
-				getReplyList();
+				getReplyList(bno);
 			} else {
 				alert("error");
 			}

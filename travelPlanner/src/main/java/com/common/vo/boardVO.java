@@ -1,5 +1,7 @@
 package com.common.vo;
 
+import java.sql.Date;
+
 public class boardVO {
 
 	private String bno;
@@ -12,6 +14,22 @@ public class boardVO {
 	
 	private String rno;
 
+	private int cnt;
+	
+	private Date timestamp;
+	
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public String getRno() {
 		return rno;
 	}

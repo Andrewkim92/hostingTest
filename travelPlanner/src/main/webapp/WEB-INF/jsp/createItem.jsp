@@ -12,13 +12,15 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Shop Homepage - CreateItem</title>
+<title>CreateItem</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
-
+<link href="../../resources/css/naver.css" rel="stylesheet">
+<link href="../../resources/css/naver2.css" rel="stylesheet">
+<link href="../../resources/css/okky.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <!-- <link href="../../resources/css/shop-homepage.css" rel="stylesheet"> -->
 
@@ -38,8 +40,15 @@ iframe {
 </head>
 <script>
 	fileDrop();
-	
-	getReplyList();
+	var bno = ${vo.bno};
+	getReplyList(bno);
+
+	$("#replies").on("click", ".replyLi button", function() {
+		var reply = $(this).parent();
+		var rno = reply.attr("data-rno");
+		var reply = reply.text();
+
+	})
 </script>
 
 <body>
@@ -55,32 +64,25 @@ iframe {
 				<div id="formDiv" style="width: 700px">
 					<form action="/createItem" id="fileUpload" name="fileUpload"
 						method="post" enctype="multipart/form-data">
-						주제 : <input type="text" name="subject" id="subject" value="${vo.subject }"> 
-						내용 : <input type="text" name="content" id="content" value="${vo.content }"> 
-						글쓴이 : <input type="text" name="writer" id="writer" value="${vo.writer }">
-						<input type="file" name="file"> 
-						<input type="hidden" id="bno" name="bno" value="${vo.bno }">
+						<h2>주제 :</h2>
+						<input type="text" name="subject" id="subject"
+							value="${vo.subject }"> 내용 : <input type="text"
+							name="content" id="content" value="${vo.content }"> 글쓴이 :
+						<input type="text" name="writer" id="writer" value="${vo.writer }">
+						<input type="file" name="file"> <input type="hidden"
+							id="bno" name="bno" value="${vo.bno }">
 						<button type="submit" class="btn btn-primary">upload</button>
 					</form>
 				</div>
 			</tbody>
 		</table>
 
-	
 		<div id="deleteButton">
 			<button id="a" onclick="deleteItem('fileUpload');">삭제</button>
 		</div>
 
 		<br>
 		<div id="replyArea">
-			<table class="table table-bordered">
-				<c:forEach var="item" items="${ReplyList}">
-					<td>${item.reply}</td>
-					<td>${item.replyWriter}</td>
-					<p>
-					</p>
-				</c:forEach>
-			</table>
 			<table class="table table-bordered">
 				<tbody>
 					<form action="/createReply" id="replyForm" name="replyForm"
@@ -89,19 +91,66 @@ iframe {
 						<input type="text" name="replyWriter" id="replyWriter"
 							value="replyWriter" readOnly> <input type="hidden"
 							id="bno2" name="bno" value="${vo.bno }">
-						<button type="submit" class="btn btn-primary">Write</button>
+						<!-- 						<button type="submit" class="btn btn-primary">Write</button> -->
 					</form>
 				</tbody>
 			</table>
-			
-			<button type="button" class="btn btn-primary" onclick="createReplyAjax();">WriteAjax</button>
+
+			<button type="button" class="btn btn-primary"
+				onclick="createReplyAjax();">WriteAjax</button>
 		</div>
 	</div>
-	
-	<ul id="replies">
-		
-	</ul>
 
+	<ul class="list-group">
+		<li id="note-title" class="list-group-item note-title">
+			<h3 class="panel-title">
+				댓글 <span id="note-count">${replyList.cnt }</span>
+			</h3>
+		</li>
+		<div id="replyTemplateArea">
+			<li class="list-group-item note-item clearfix" id="note-1">
+				<div class="content-body panel-body pull-left" style="width: 1500px">
+					<div class="avatar avatar-medium clearfix">
+						<div class="avatar-info">
+							<a class="nickname" href="zz" title="aaa">사용자 ID</a>
+						</div>
+						<div class="date-created">
+							<span class="timeago" title="2018-10-31 16:33:06.0">2018-10-31
+								16:33:06.0</span>
+						</div>
+						<fieldset class="form">
+							<article id="note-text-1" class="list-group-item-text note-text">
+							<p>댓글.</p>
+							<p>
+								<br>
+							</p>
+							</article>
+						</fieldset>
+					</div>
+				</div> <!-- 			추천 부분  -->
+				<div class="content-function pull-right text-center">
+					<!-- 			<h1>bbb</h1> -->
+					<button id="update">update</button>
+					<button id="delete">delete</button>
+					<button id="plus">plus</button>
+					<button id="minus">minus</button>
+<!-- 					<div class="content-function-group"> -->
+<!-- 						<div class="note-evaluate-wrapper"> -->
+<!-- 							<a href="#" class="note-vote-btn" role="button"></a> <i id="a" -->
+<!-- 								class="fa fa-angle-up note-evaluate-assent-assent" -->
+<!-- 								data-placement="left" data-toggle="tooltip" title -->
+<!-- 								data-original-title="추천"> </i> -->
+<!-- 							<div id="content-vote-count-1549482" class="content-eval-count">0</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+				</div>
+				<div id="content-function-cog-1461082" class="content-function-cog">
+					<!-- 				<button id="update">AAAA</button> -->
+				</div>
+			</li>
+		</div>
+	</ul>
+	<!-- 	<button id="update">AAAA</button> -->
 	<jsp:include page="/WEB-INF/jsp/decorators/footer.jsp" />
 
 	<script

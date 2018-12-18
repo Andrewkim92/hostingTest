@@ -51,18 +51,16 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value="/{rno}", method=RequestMethod.PUT)
-	public ResponseEntity<String> update(@PathVariable("bno") Integer bno,@RequestBody boardVO vo){
+	public ResponseEntity<String> update(@RequestBody boardVO vo){
 		
 		ResponseEntity<String> entity =null;
 		try {
-			
 			mapper.updateReply(vo);
 			entity=new ResponseEntity<>("SUCCESS",HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
 			entity=new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		
 		return entity;
 	}
 	
@@ -71,7 +69,6 @@ public class ReplyController {
 		
 		ResponseEntity<String> entity =null;
 		try {
-			
 			mapper.deleteReply(rno);
 			entity=new ResponseEntity<>("SUCCESS",HttpStatus.OK);
 		}catch(Exception e) {

@@ -48,7 +48,7 @@ public interface MemberMapper {
 			+ "value (#{bno},#{reply},#{replyWriter})")
 	public void createReply(boardVO vo);
 
-	@Select("select * from reply where bno=#{bno}")
-	public List<boardVO> getReplyList(int bno);
+	@Select("select *,COUNT(*) as cnt from reply where bno=#{bno}")
+	public boardVO getReplyList(int bno);
 	
 }

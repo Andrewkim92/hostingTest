@@ -214,8 +214,9 @@ to {
 	<form class="modal-content animate" action="/loginPost" method="post">
 		<div class="imgcontainer">
 			<span onclick="document.getElementById('id01').style.display='none'"
-				class="close" title="Close Modal">×</span> <img
-				src="/img_avatar2.png" alt="Avatar" class="avatar">
+				class="close" title="Close Modal">×</span> 
+<!-- 				<img -->
+<!-- 				src="/img_avatar2.png" alt="Avatar" class="avatar"> -->
 		</div>
 
 		<div class="container">
@@ -246,8 +247,9 @@ to {
 		<div class="imgcontainer">
 			<span
 				onclick="document.getElementById('signIn').style.display='none'"
-				class="close" title="Close Modal">×</span> <img
-				src="img_avatar2.png" alt="Avatar" class="avatar">
+				class="close" title="Close Modal">×</span> 
+<!-- 				<img -->
+<!-- 				src="img_avatar2.png" alt="Avatar" class="avatar"> -->
 		</div>
 
 		<div class="container">
