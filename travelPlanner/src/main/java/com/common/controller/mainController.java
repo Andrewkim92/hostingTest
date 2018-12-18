@@ -1,8 +1,12 @@
 package com.common.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,25 +69,27 @@ public class mainController {
 		return "redirect:";
 	}
 
-	/*@RequestMapping(value = "/createReply", method = RequestMethod.POST)
-	public String createReply(boardVO vo) throws Exception {
-
-		// if(vo.getBno().equals(null) || vo.getBno().equals("")) {
-		// error
-		mapper.createReply(vo);
-		// }else {
-		// mapper.updateReply(vo);
-		// }
-
-		return "redirect:";
-	}*/
-
 	@RequestMapping(value = "/createItem", method = RequestMethod.POST)
-	public String createItem(boardVO vo, @RequestPart MultipartFile file, HttpServletRequest req,
+	public String createItem(boardVO vo, @RequestPart MultipartFile files, HttpServletRequest req,
 			HttpServletResponse rep) throws Exception {
 
-		utilFile.fileUpload2(req, rep);
+//		utilFile.fileUpload2(req, rep);
 
+		String sourceFileName = files.getOriginalFilename(); 
+        String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase(); 
+        File destinationFile; 
+        String destinationFileName;
+        String fileUrl = "C:\\Users\\qwerh\\git\\pro2\\travelPlanner\\src\\main\\webapp\\WEB-INF\\uploadFiles\\";
+ 
+        
+        do { 
+            destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension; 
+            destinationFile = new File(fileUrl + destinationFileName); 
+        } while (destinationFile.exists()); 
+        
+        destinationFile.getParentFile().mkdirs(); 
+        files.transferTo(destinationFile); 
+		
 		if (vo.getBno().equals(null) || vo.getBno().equals("")) {
 			mapper.createItem(vo);
 		} else {

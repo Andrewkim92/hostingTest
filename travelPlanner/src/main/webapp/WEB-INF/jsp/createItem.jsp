@@ -40,7 +40,10 @@ iframe {
 </head>
 <script>
 	fileDrop();
-	var bno = ${vo.bno};
+	var bno = $
+	{
+		vo.bno
+	};
 	getReplyList(bno);
 
 	$("#replies").on("click", ".replyLi button", function() {
@@ -69,8 +72,9 @@ iframe {
 							value="${vo.subject }"> 내용 : <input type="text"
 							name="content" id="content" value="${vo.content }"> 글쓴이 :
 						<input type="text" name="writer" id="writer" value="${vo.writer }">
-						<input type="file" name="file"> <input type="hidden"
-							id="bno" name="bno" value="${vo.bno }">
+						<input type="file" name="files"> <input type="hidden"
+							id="bno" name="bno" value="${vo.bno }"> 
+
 						<button type="submit" class="btn btn-primary">upload</button>
 					</form>
 				</div>
@@ -134,15 +138,15 @@ iframe {
 					<button id="delete">delete</button>
 					<button id="plus">plus</button>
 					<button id="minus">minus</button>
-<!-- 					<div class="content-function-group"> -->
-<!-- 						<div class="note-evaluate-wrapper"> -->
-<!-- 							<a href="#" class="note-vote-btn" role="button"></a> <i id="a" -->
-<!-- 								class="fa fa-angle-up note-evaluate-assent-assent" -->
-<!-- 								data-placement="left" data-toggle="tooltip" title -->
-<!-- 								data-original-title="추천"> </i> -->
-<!-- 							<div id="content-vote-count-1549482" class="content-eval-count">0</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
+					<!-- 					<div class="content-function-group"> -->
+					<!-- 						<div class="note-evaluate-wrapper"> -->
+					<!-- 							<a href="#" class="note-vote-btn" role="button"></a> <i id="a" -->
+					<!-- 								class="fa fa-angle-up note-evaluate-assent-assent" -->
+					<!-- 								data-placement="left" data-toggle="tooltip" title -->
+					<!-- 								data-original-title="추천"> </i> -->
+					<!-- 							<div id="content-vote-count-1549482" class="content-eval-count">0</div> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
 				</div>
 				<div id="content-function-cog-1461082" class="content-function-cog">
 					<!-- 				<button id="update">AAAA</button> -->
