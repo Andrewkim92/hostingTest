@@ -40,10 +40,11 @@ iframe {
 </head>
 <script>
 	fileDrop();
-	var bno = $
-	{
-		vo.bno
-	};
+	var bno = ${vo.bno};
+	
+	if(bno==null){
+		bno = 0;
+	}
 	getReplyList(bno);
 
 	$("#replies").on("click", ".replyLi button", function() {
@@ -69,12 +70,18 @@ iframe {
 						method="post" enctype="multipart/form-data">
 						<h2>주제 :</h2>
 						<input type="text" name="subject" id="subject"
-							value="${vo.subject }"> 내용 : <input type="text"
-							name="content" id="content" value="${vo.content }"> 글쓴이 :
+							value="${vo.subject }"> 내용 : <input type="text" name="content" id="content" value="${vo.content }"> 
+							글쓴이 :
 						<input type="text" name="writer" id="writer" value="${vo.writer }">
-						<input type="file" name="files"> <input type="hidden"
-							id="bno" name="bno" value="${vo.bno }"> 
-
+						<input type="file" name="files">
+						<c:choose>
+							<c:when test="${vo.bno == null}">
+								<input type="hidden" id="bno" name="bno" value='0'>	
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" id="bno" name="bno" value="${vo.bno }">
+							</c:otherwise>
+						</c:choose>
 						<button type="submit" class="btn btn-primary">upload</button>
 					</form>
 				</div>

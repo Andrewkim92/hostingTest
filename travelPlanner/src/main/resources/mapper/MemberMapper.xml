@@ -2,31 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.common.base.mapper.MemberMapper">
-	
+<mapper namespace="com.common.mapper.MemberMapper">
+
 	<select id="login" resultType="com.common.vo.memberVO">
-		select 
-				*
+		select
+		*
 		from
-				user
+		user
 		where
-				id = #{userid}
+		id = #{userid}
 	</select>
-	
+
 	<select id="loginTest" resultType="com.common.vo.memberVO">
-		select 
-				*
+		select
+		*
 		from
-				user
+		user
 		where
-				id = #{userid}
+		id =
+		#{userid}
 	</select>
-	
+
 	<insert id="createObject" parameterType="com.common.vo.ObjectVO">
-		insert into 
-					object (id,name,description)
-			values 
-					(#{id},#{name},#{description})
+		insert into  
+		object
+		(id,name,description)
+		values
+		(#{id},#{name},#{description})
 	</insert>
-	
+
+	<insert id="createItem" parameterType="com.common.vo.boardVO"
+		useGeneratedKeys="true" keyProperty="bno">
+		insert into board (subject,content,writer)
+		value (#{subject},#{content},#{writer})
+	</insert>
+
+	<insert id="fileInsert" parameterType="com.common.vo.FileVO">
+		INSERT INTO
+		FILES (FNO,
+		BNO, FILENAME, FILEORINAME, FILEURL)
+		VALUES
+		(#{fno},#{bno},#{fileName},#{fileOriName},#{fileUrl})
+	</insert>
+
+
 </mapper>

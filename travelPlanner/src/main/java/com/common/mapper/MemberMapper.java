@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.common.vo.FileVO;
 import com.common.vo.ObjectVO;
 import com.common.vo.boardVO;
 import com.common.vo.memberVO;
@@ -27,11 +28,11 @@ public interface MemberMapper {
 	@Update("update vistor set vistorCnt=vistorCnt+1")
 	public int cntVistor();
 
-	@Insert("insert into board (subject,content,writer)"
-			+ "value (#{subject},#{content},#{writer})")
-	public void createItem(boardVO vo);
+	public void createItem(boardVO vo)throws Exception;
 
-	@Select("select * from board")
+	@Select("select * from board as B "
+			+ "JOIN files as F "
+			+ "ON B.bno = F.bno")
 	public List<boardVO> getAllItemList();
 
 	@Select("select * from board where bno=#{bno}")
@@ -50,5 +51,7 @@ public interface MemberMapper {
 
 	@Select("select *,COUNT(*) as cnt from reply where bno=#{bno}")
 	public boardVO getReplyList(int bno);
+	
+	public void fileInsert(FileVO fvo);
 	
 }

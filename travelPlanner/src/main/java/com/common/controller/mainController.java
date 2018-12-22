@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.common.mapper.MemberMapper;
 import com.common.utils.utilFile;
+import com.common.vo.FileVO;
 import com.common.vo.boardVO;
 
 @Controller
@@ -31,11 +32,11 @@ public class mainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String jspFile(Model model) throws Exception {
-//		System.out.println("index.jsp request");
+		// System.out.println("index.jsp request");
 		model.addAttribute("itemList", mapper.getAllItemList());
 
-		int[] intArray= {0,0,0,0,0};
-		
+		int[] intArray = { 0, 0, 0, 0, 0 };
+
 		return "index";
 	}
 
@@ -59,43 +60,58 @@ public class mainController {
 	public String deleteItem(boardVO vo) throws Exception {
 		// System.out.println("deleteItem start");
 
-		if (vo.getBno().equals(null) || vo.getBno().equals("")) {
-			// error
-			// mapper.createItem(vo);
-		} else {
+//		if (vo.getBno()) {
+//			// error
+//			// mapper.createItem(vo);
+//		} else {
 			mapper.deleteItem(vo);
-		}
+//		}
 
 		return "redirect:";
 	}
 
 	@RequestMapping(value = "/createItem", method = RequestMethod.POST)
-	public String createItem(boardVO vo, @RequestPart MultipartFile files, HttpServletRequest req,
+	public String createItem(boardVO vo, FileVO fvo, @RequestPart MultipartFile files, HttpServletRequest req,
 			HttpServletResponse rep) throws Exception {
 
-//		utilFile.fileUpload2(req, rep);
+		// utilFile.fileUpload2(req, rep);
 
-		String sourceFileName = files.getOriginalFilename(); 
-        String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase(); 
-        File destinationFile; 
-        String destinationFileName;
-        String fileUrl = "C:\\Users\\qwerh\\git\\pro2\\travelPlanner\\src\\main\\webapp\\WEB-INF\\uploadFiles\\";
- 
-        
-        do { 
-            destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension; 
-            destinationFile = new File(fileUrl + destinationFileName); 
-        } while (destinationFile.exists()); 
-        
-        destinationFile.getParentFile().mkdirs(); 
-        files.transferTo(destinationFile); 
-		
-		if (vo.getBno().equals(null) || vo.getBno().equals("")) {
-			mapper.createItem(vo);
-		} else {
-			mapper.updateItem(vo);
+		if(files.isEmpty()) {
+			if (vo.getBno()<1) {
+				mapper.createItem(vo);
+			} else {
+				mapper.updateItem(vo);
+			}
+		}else {
+			
+			FileVO file = new FileVO();
+
+			String sourceFileName = files.getOriginalFilename();
+			String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
+			File destinationFile;
+			String destinationFileName;
+			String fileUrl = "C:\\Users\\qwerh\\git\\pro2\\travelPlanner\\src\\main\\webapp\\resources\\uploadImg\\";
+			
+			do {
+				destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
+				destinationFile = new File(fileUrl + destinationFileName);
+			} while (destinationFile.exists());
+
+			destinationFile.getParentFile().mkdirs();
+			files.transferTo(destinationFile);
+
+			if (vo.getBno()<1) {
+				mapper.createItem(vo);
+				file.setBno(vo.getBno());
+				file.setFileName(destinationFileName);
+				file.setFileOriName(sourceFileName);
+				file.setFileUrl(fileUrl);
+				System.out.println(file.getBno());
+				mapper.fileInsert(file);
+			} else {
+				mapper.updateItem(vo);
+			}
 		}
-
 		return "redirect:";
 	}
 
