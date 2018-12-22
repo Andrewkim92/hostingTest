@@ -2,11 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
 
-<%-- <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
@@ -21,8 +17,6 @@
 <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<!-- <link href="../../resources/css/shop-homepage.css" rel="stylesheet"> -->
 <style>
 /* city Search Loading by Justin 2013.04.02 */
 .ui-autocomplete-loading {
@@ -97,7 +91,7 @@
 									<h4 class="card-title">
 										<a href="/detailItem?bno=${item.bno }">${item.subject }</a>
 									</h4>
-									<h5>$333.99</h5>
+									<h5>${item.writer }</h5>
 									<p class="card-text">${item.content }</p>
 								</div>
 								<div class="card-footer">

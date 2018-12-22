@@ -202,8 +202,9 @@ to {
 						onclick="document.getElementById('id01').style.display='block'">Pricing
 						Table</a>
 				</div></li>
-				
-				<li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('id01').style.display='block'">Login</a>
+
+			<li class="nav-item"><a class="nav-link" href="#"
+				onclick="document.getElementById('id01').style.display='block'">Login</a>
 			</li>
 		</ul>
 	</div>
@@ -214,9 +215,9 @@ to {
 	<form class="modal-content animate" action="/loginPost" method="post">
 		<div class="imgcontainer">
 			<span onclick="document.getElementById('id01').style.display='none'"
-				class="close" title="Close Modal">×</span> 
-<!-- 				<img -->
-<!-- 				src="/img_avatar2.png" alt="Avatar" class="avatar"> -->
+				class="close" title="Close Modal">×</span>
+			<!-- 				<img -->
+			<!-- 				src="/img_avatar2.png" alt="Avatar" class="avatar"> -->
 		</div>
 
 		<div class="container">
@@ -247,9 +248,9 @@ to {
 		<div class="imgcontainer">
 			<span
 				onclick="document.getElementById('signIn').style.display='none'"
-				class="close" title="Close Modal">×</span> 
-<!-- 				<img -->
-<!-- 				src="img_avatar2.png" alt="Avatar" class="avatar"> -->
+				class="close" title="Close Modal">×</span>
+			<!-- 				<img -->
+			<!-- 				src="img_avatar2.png" alt="Avatar" class="avatar"> -->
 		</div>
 
 		<div class="container">
@@ -271,6 +272,10 @@ to {
 				class="cancelbtn">Cancel</button>
 		</div>
 	</form>
+</div>
+
+<div id="temp" style="padding:40px 140px">
+
 </div>
 
 

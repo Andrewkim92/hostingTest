@@ -35,8 +35,6 @@ public class mainController {
 		// System.out.println("index.jsp request");
 		model.addAttribute("itemList", mapper.getAllItemList());
 
-		int[] intArray = { 0, 0, 0, 0, 0 };
-
 		return "index";
 	}
 
