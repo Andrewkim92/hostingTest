@@ -9,8 +9,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+<!-- <meta name="description" content=""> -->
+<!-- <meta name="author" content=""> -->
 <title>TravelPlanner</title>
 
 <!-- Bootstrap core CSS -->
@@ -23,6 +23,12 @@
 	background: white
 		url('http://f.goodkiss.co.kr/sample/images/waiting.gif') right center
 		no-repeat;
+		
+}
+.wrap {
+    width: 1092px;
+    margin: 0 auto;
+    position: relative;
 }
 </style>
 <link rel="stylesheet"
@@ -39,7 +45,9 @@
 
 	<!-- Page Content -->
 	<div class="container">
-
+		<div class="wrap">
+		</div>
+		
 		<div class="row">
 			<jsp:include page="/WEB-INF/jsp/decorators/headerMenu.jsp" />
 
@@ -107,7 +115,6 @@
 	</div>
 
 	<jsp:include page="/WEB-INF/jsp/decorators/footer.jsp" />
-
 	<!-- 	<script src="../../resources/vendor/jquery/jquery.min.js"></script> -->
 	<script
 		src="../../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
