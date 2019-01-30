@@ -34,8 +34,16 @@ public class mainController {
 	public String jspFile(Model model) throws Exception {
 		// System.out.println("index.jsp request");
 		model.addAttribute("itemList", mapper.getAllItemList());
-
+//		str s='11';
 		return "index";
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Model model) throws Exception {
+		// System.out.println("index.jsp request");
+		model.addAttribute("itemList", mapper.getAllItemList());
+//		str s='11';
+		return "test";
 	}
 
 	@RequestMapping(value = "/goCreateItem", method = RequestMethod.GET)

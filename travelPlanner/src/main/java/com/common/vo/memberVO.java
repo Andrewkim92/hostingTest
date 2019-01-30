@@ -1,5 +1,6 @@
 package com.common.vo;
 
+
 public class memberVO {
 	
 	private String userid;
