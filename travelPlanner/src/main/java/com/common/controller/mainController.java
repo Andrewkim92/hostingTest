@@ -27,14 +27,11 @@ public class mainController {
 	@Autowired
 	private MemberMapper mapper;
 
-	@Autowired
-	private utilFile utils;
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String jspFile(Model model) throws Exception {
 		// System.out.println("index.jsp request");
 		model.addAttribute("itemList", mapper.getAllItemList());
-//		str s='11';
+		
 		return "index";
 	}
 	
