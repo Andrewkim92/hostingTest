@@ -1,3 +1,37 @@
+$(document).ready(function(){
+  $("#chatRoom").hide();
+  $("#connect").click(function(){
+    $("#connect").blur();
+    $("#chatRoom").show();
+    $("#chatRoom a").focus();
+    
+    return false;
+  });
+  
+  $("#connect").click(function(){
+//	    $("#chatRoom").blur();
+	    $("#chatRoom").show();
+	    $("#chatRoom a").focus();
+	    
+	    connect();
+	    return false;
+	  });
+  
+//  $("#layerPopup a").keydown(function(e){
+//    if(e.shiftKey && e.keyCode == 9){ // Shift + Tab 키를 의미합니다.
+//      $("#contents > a").focus();
+//      $("#layerPopup").hide();
+//      return false;
+//    }
+//  });
+  
+  $("#disconnect").click(function(){
+    $("#connect").focus();
+    $("#chatRoom").hide();
+    
+    disconnect();
+  });
+});
 
 function fileDrop() {
 
@@ -49,9 +83,7 @@ function getReplyList(bno){
 						+ "<button id='delete-'"+this.rno+" onclick='deleteReply("+this.rno+")'>delete</button>"
 						+ "<button id='update-'"+this.rno+" onclick='updateReply("+this.rno+")'>update</button>";
 				});
-		
 		$("#replyTemplateArea").html(str);
-		
 	});
 }
 
@@ -166,13 +198,6 @@ function addFilePath(msg) {
 	document.getElementById("form1").reset();
 }
 
-function searchFlight() {
-
-	// 입력정보확인 (출발 , 도착 , 기간 (출발/도착), 인원)
-	// ajax 통신
-	// 결과 확인 및 페이지 이동
-	location.href = "flight";
-}
 
 function goFlightTimeInfo(formId) {
 	// var formDataObj = $("#" + formId).serializeObject();
@@ -180,16 +205,6 @@ function goFlightTimeInfo(formId) {
 	location.href = "flight?" + formDataObj;
 }
 
-function getDFlightInfo(formId) {
-	// var formDataObj = $("#" + formId).serializeObject();
-	var formDataObj = $("#" + formId).serialize();
-	location.href = "dFlightSchList?" + formDataObj;
-}
-
-function getFlightTimeInfo(formId) {
-	var formDataObj = $("#" + formId).serialize();
-	location.href = "flightInfo?" + formDataObj;
-}
 
 function deleteItem(formId) {
 
@@ -204,58 +219,6 @@ function deleteItem(formId) {
 	form.appendChild(hiddenField);
 	document.body.appendChild(form);
 	form.submit();
-}
-
-function getFlightTimeInfo2(formId) {
-
-	var formDataObj = $("#" + formId).serializeObject();
-
-	if ($("#domestic").is(":checked") == true) {
-		formDataObj.schLineType = "D";
-	} else {
-		formDataObj.schLineType = "I";
-	}
-
-	if ($("#start").is(":checked") == true) {
-		formDataObj.schIOType = "I";
-	} else {
-		formDataObj.schIOType = "O";
-	}
-
-	$.ajax({
-		url : "/getFlightTimeInfo",
-		type : "get",
-		data : formDataObj,
-		// dataType: 'json',
-		success : function(res) {
-			if (res == null) {
-				alert('no data');
-			} else {
-				// 1. 영역에 데이터 뿌리기
-				// 1-1. 데이터 개수 확인
-				// 1-2. 데이터 개수에 맞게 뿌리기
-			}
-		}
-	});
-}
-
-function drawChart() {
-	let a = 1;
-
-	$.ajax({
-		url : "/drawChart",
-		type : "get",
-		data : null,
-		// dataType: 'json',
-		success : function(res) {
-			if (res == null) {
-				alert('no data');
-			} else {
-				res.int1;
-				res.int2;
-			}
-		}
-	});
 }
 
 jQuery.fn.serializeObject = function() {
@@ -277,61 +240,3 @@ jQuery.fn.serializeObject = function() {
 	return obj;
 }
 
-function drawColColors() {
-	var data = new google.visualization.DataTable();
-	data.addColumn('timeofday', 'Time of Day');
-	data.addColumn('number', 'Motivation Level');
-	data.addColumn('number', 'Energy Level');
-
-	data.addRows([ [ {
-		v : [ 8, 0, 0 ],
-		f : '8 am'
-	}, 1, .25 ], [ {
-		v : [ 9, 0, 0 ],
-		f : '9 am'
-	}, 2, .5 ], [ {
-		v : [ 10, 0, 0 ],
-		f : '10 am'
-	}, 3, 1 ], [ {
-		v : [ 11, 0, 0 ],
-		f : '11 am'
-	}, 4, 2.25 ], [ {
-		v : [ 12, 0, 0 ],
-		f : '12 pm'
-	}, 5, 2.25 ], [ {
-		v : [ 13, 0, 0 ],
-		f : '1 pm'
-	}, 6, 3 ], [ {
-		v : [ 14, 0, 0 ],
-		f : '2 pm'
-	}, 7, 4 ], [ {
-		v : [ 15, 0, 0 ],
-		f : '3 pm'
-	}, 8, 5.25 ], [ {
-		v : [ 16, 0, 0 ],
-		f : '4 pm'
-	}, 9, 7.5 ], [ {
-		v : [ 17, 0, 0 ],
-		f : '5 pm'
-	}, 10, 10 ], ]);
-
-	var options = {
-		title : 'Airport CODE',
-		colors : [ '#9575cd', '#33ac71' ],
-		hAxis : {
-			title : 'Airport CODE',
-			// format : 'h:mm a',
-			viewWindow : {
-				min : [ 7, 30, 0 ],
-				max : [ 17, 30, 0 ]
-			}
-		},
-		vAxis : {
-			title : 'Rating (scale of 1-10)'
-		}
-	};
-
-	var chart = new google.visualization.ColumnChart(document
-			.getElementById('chartDiv2'));
-	chart.draw(data, options);
-}

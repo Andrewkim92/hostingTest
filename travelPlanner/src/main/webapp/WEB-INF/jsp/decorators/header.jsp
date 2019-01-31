@@ -149,7 +149,7 @@ to {
 <nav
 	class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 <div class="container">
-	<a class="navbar-brand" href="/">Start Bootstrap</a>
+	<a class="navbar-brand" href="/">Travel planner</a>
 	<button class="navbar-toggler navbar-toggler-right" type="button"
 		data-toggle="collapse" data-target="#navbarResponsive"
 		aria-controls="navbarResponsive" aria-expanded="false"
@@ -158,51 +158,15 @@ to {
 	</button>
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><a class="nav-link" href="../about.html">About</a>
+			<li class="nav-item"><a class="nav-link" href="../about.html">여행지</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="../services.html">Services</a>
+			<li class="nav-item"><a class="nav-link" href="../services.html">일정만들기</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a>
+			<li class="nav-item"><a class="nav-link" href="../contact.html">호텔</a>
 			</li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownPortfolio" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> Portfolio </a>
-				<div class="dropdown-menu dropdown-menu-right"
-					aria-labelledby="navbarDropdownPortfolio">
-					<a class="dropdown-item" href="portfolio-1-col.html">1 Column
-						Portfolio</a> <a class="dropdown-item" href="portfolio-2-col.html">2
-						Column Portfolio</a> <a class="dropdown-item"
-						href="portfolio-3-col.html">3 Column Portfolio</a> <a
-						class="dropdown-item" href="portfolio-4-col.html">4 Column
-						Portfolio</a> <a class="dropdown-item" href="portfolio-item.html">Single
-						Portfolio Item</a>
-				</div></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Blog </a>
-				<div class="dropdown-menu dropdown-menu-right"
-					aria-labelledby="navbarDropdownBlog">
-					<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a> <a
-						class="dropdown-item" href="blog-home-2.html">Blog Home 2</a> <a
-						class="dropdown-item" href="blog-post.html">Blog Post</a>
-				</div></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Other Pages </a>
-				<div class="dropdown-menu dropdown-menu-right"
-					aria-labelledby="navbarDropdownBlog">
-					<a class="dropdown-item" href="full-width.html">Full Width Page</a>
-					<a class="dropdown-item" href="sidebar.html">Sidebar Page</a> <a
-						class="dropdown-item" href="faq.html">FAQ</a> <a
-						class="dropdown-item" href="404.html">404</a> <a
-						class="dropdown-item" href="pricing.html"
-						onclick="document.getElementById('id01').style.display='block'">Pricing
-						Table</a>
-				</div></li>
-
+			<li class="nav-item"><a class="nav-link" href="../contact.html">이용방법</a>
+			</li>
+			
 			<li class="nav-item"><a class="nav-link" href="#"
 				onclick="document.getElementById('id01').style.display='block'">Login</a>
 			</li>
@@ -274,7 +238,7 @@ to {
 	</form>
 </div>
 
-<div id="temp" style="padding:40px 140px">
+<div id="temp" style="padding:45px 140px">
 
 </div>
 

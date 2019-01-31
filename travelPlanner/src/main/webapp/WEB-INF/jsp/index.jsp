@@ -23,12 +23,12 @@
 	background: white
 		url('http://f.goodkiss.co.kr/sample/images/waiting.gif') right center
 		no-repeat;
-		
 }
+
 .wrap {
-    width: 1092px;
-    margin: 0 auto;
-    position: relative;
+	width: 1092px;
+	margin: 0 auto;
+	position: relative;
 }
 </style>
 <link rel="stylesheet"
@@ -37,7 +37,16 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="../../resources/js/search.js"></script>
+<script src="../../resources/js/common.js"></script>
+<link rel="stylesheet" href="../../resources/css/search.css" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="../../resources/js/_websocket.js"></script>
 
 </head>
 <body>
@@ -45,9 +54,15 @@
 
 	<!-- Page Content -->
 	<div class="container">
-		<div class="wrap">
+		<div class="search_area">
+			<h1 style="color: white">나만의 여행 플래너 ! 쉽고 빠르게 여행을 계획하세요.</h1>
+			<input id="autocomplete" type="text" />
+
+			<h2 style="color: white">추천도시 :</h2>
 		</div>
-		
+		<!-- 		<div class="wrap"> -->
+		<!-- 		</div> -->
+
 		<div class="row">
 			<jsp:include page="/WEB-INF/jsp/decorators/headerMenu.jsp" />
 
@@ -60,17 +75,21 @@
 						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 					</ol>
-					<div class="carousel-inner" role="listbox" width="900px" height="350px">
+					<div class="carousel-inner" role="listbox" width="900px"
+						height="350px">
 						<div class="carousel-item active">
-							<img class="d-block img-fluid" src="../../resources/uploadImg/oZeYTj18dwTslK76ly1C7Y5cxsqbBQos.jpg"
+							<img class="d-block img-fluid"
+								src="../../resources/uploadImg/oZeYTj18dwTslK76ly1C7Y5cxsqbBQos.jpg"
 								alt="First slide" width="900px" height="280px">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block img-fluid" src="../../resources/uploadImg/kBeqCF4cLjeobu7lrUVPJ2NYQDKhdvyq.jpg"
+							<img class="d-block img-fluid"
+								src="../../resources/uploadImg/kBeqCF4cLjeobu7lrUVPJ2NYQDKhdvyq.jpg"
 								alt="Second slide" width="900px" height="280px">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block img-fluid" src="../../resources/uploadImg/hSmDpJc4iTmNmamEGfSGTxR4bWojRfSA.jpg"
+							<img class="d-block img-fluid"
+								src="../../resources/uploadImg/hSmDpJc4iTmNmamEGfSGTxR4bWojRfSA.jpg"
 								alt="Third slide" width="900px" height="280px">
 						</div>
 					</div>
@@ -84,17 +103,15 @@
 						class="sr-only">Next</span>
 					</a>
 				</div>
-				<div class="search_area">
-					<p>자동완성기능</p>
-					<input id="autocomplete" type="text" />
-				</div>
+
 
 				<div class="row">
 					<c:forEach var="item" items="${itemList}">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="card h-100">
 								<a href="#"> <img class="card-img-top"
-									src="../../resources/uploadImg/${item.fileName }" alt="" height="200px"></a>
+									src="../../resources/uploadImg/${item.fileName }" alt=""
+									height="200px"></a>
 								<div class="card-body">
 									<h4 class="card-title">
 										<a href="/detailItem?bno=${item.bno }">${item.subject }</a>
@@ -110,6 +127,27 @@
 					</c:forEach>
 
 				</div>
+			</div>
+		</div>
+
+		<div id="contents">
+			<!-- 			<a href="#layerPopup">팝업창 열기</a> -->
+			<div id="fixedbtn">
+				<button id="connect">
+					팝업창 열기
+				</button>
+			</div>
+			<div id="chatRoom">
+				<textarea id="textArea" rows="10" cols="100"></textarea>
+<!-- 				<div id="textArea"></div> -->
+				<!-- 				<a href="#">레이어 팝업이 제공되었습니다.</a> -->
+				<button type="button" id="disconnect"
+					style="position: fixed; bottom: 24%; left: 95%; width: 100px;">닫기</button>
+				<form>
+					<input id="chatText" type="text" placeholder="채팅을 입력하세요."
+						style="position: fixed; bottom: 1%; width: 35%;" />
+					<button id="send" type="submit" style="bg-color:gray; position: fixed; bottom: 1%; left: 95%; width:5%;">Send</button>
+				</form>
 			</div>
 		</div>
 	</div>
