@@ -1,14 +1,6 @@
 var stompClient = null;
 
 function setConnected(connected) {
-//    $("#connect").prop("disabled", connected);
-//    $("#disconnect").prop("disabled", !connected);
-//    if (connected) {
-//        $("#conversation").show();
-//    }
-//    else {
-//        $("#conversation").hide();
-//    }
     $("#textArea").html("");
 }
 
@@ -38,9 +30,10 @@ function disconnect(e) {
 
 function sendName() {
 	let text = $("#chatText").val();
+	let name = $("#chatName").val();
 	//텍스트는 잘 읽음
 //	alert(text);
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': text}));
+    stompClient.send("/app/hello", {}, JSON.stringify({'name': name , 'msg' :text}));
     $("#chatText").val("");
 }
 

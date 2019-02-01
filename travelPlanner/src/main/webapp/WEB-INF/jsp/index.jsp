@@ -9,8 +9,6 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- <meta name="description" content=""> -->
-<!-- <meta name="author" content=""> -->
 <title>TravelPlanner</title>
 
 <!-- Bootstrap core CSS -->
@@ -27,6 +25,12 @@
 
 .wrap {
 	width: 1092px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.col-lg-9{
+	width: 100%;
 	margin: 0 auto;
 	position: relative;
 }
@@ -104,7 +108,6 @@
 					</a>
 				</div>
 
-
 				<div class="row">
 					<c:forEach var="item" items="${itemList}">
 						<div class="col-lg-4 col-md-6 mb-4">
@@ -120,7 +123,7 @@
 									<p class="card-text">${item.content }</p>
 								</div>
 								<div class="card-footer">
-									<small class="text-muted">3.2/5.0</small>
+									<small class="text-muted">4.5/5.0</small>
 								</div>
 							</div>
 						</div>
@@ -131,21 +134,22 @@
 		</div>
 
 		<div id="contents">
-			<!-- 			<a href="#layerPopup">팝업창 열기</a> -->
 			<div id="fixedbtn">
 				<button id="connect">
 					팝업창 열기
 				</button>
 			</div>
 			<div id="chatRoom">
-				<textarea id="textArea" rows="10" cols="100"></textarea>
+				<textarea id="textArea" rows="8" cols="100"></textarea>
 <!-- 				<div id="textArea"></div> -->
 				<!-- 				<a href="#">레이어 팝업이 제공되었습니다.</a> -->
 				<button type="button" id="disconnect"
-					style="position: fixed; bottom: 24%; left: 95%; width: 100px;">닫기</button>
+					style="position: fixed; bottom: 24%; left: 97%; width: 3%;">X</button>
 				<form>
+					<input id="chatName" type="text" placeholder="guest" 
+					style="position: fixed; bottom: 1%; width: 7%; right:32%;"/>
 					<input id="chatText" type="text" placeholder="채팅을 입력하세요."
-						style="position: fixed; bottom: 1%; width: 35%;" />
+						style="position: fixed; bottom: 1%; width: 30%; right:3%;" />
 					<button id="send" type="submit" style="bg-color:gray; position: fixed; bottom: 1%; left: 95%; width:5%;">Send</button>
 				</form>
 			</div>

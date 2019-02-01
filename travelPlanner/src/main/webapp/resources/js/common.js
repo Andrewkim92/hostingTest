@@ -9,7 +9,7 @@ $(document).ready(function(){
   });
   
   $("#connect").click(function(){
-//	    $("#chatRoom").blur();
+	    $("#chatRoom").blur();
 	    $("#chatRoom").show();
 	    $("#chatRoom a").focus();
 	    
